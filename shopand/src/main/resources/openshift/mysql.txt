@@ -1,0 +1,7 @@
+MySQL 5.1 database added.  Please make note of these credentials:
+
+       Root User: adminSLZMJK2
+   Root Password: mcZxMHuAsxzs
+   Database Name: shopand
+
+Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
