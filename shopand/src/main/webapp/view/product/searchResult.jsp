@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" view="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Buscando por "${query}"</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
 		<h1>Buscando por "${query}"</h1>
 	</div>
 	
-	<tags:listProduct items="${products}" />
+	<tags:listProduct products="${products}" />
 
 </body>
 </html>

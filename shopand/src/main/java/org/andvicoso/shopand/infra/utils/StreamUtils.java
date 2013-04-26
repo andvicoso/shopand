@@ -46,12 +46,10 @@ public class StreamUtils {
 	}
 
 	public static int write(final InputStream in, final OutputStream out) {
-
 		try {
-
 			int length = 0;
-			final byte[] buf = new byte[BUFFER_SIZE];
 			int count = 0;
+			final byte[] buf = new byte[BUFFER_SIZE];
 
 			while ((count = in.read(buf)) >= 0) {
 				out.write(buf, 0, count);
@@ -60,11 +58,9 @@ public class StreamUtils {
 			out.flush();
 
 			return length;
-
 		} catch (final Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	public static void write(final String string, final OutputStream out) {

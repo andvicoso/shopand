@@ -17,7 +17,7 @@
 				<h1>Ofertas</h1>
 			</div>
 
-			<tags:listProduct items="${products}" />
+			<tags:listProduct products="${products}" />
 		</c:if>
 	</div>
 </body>

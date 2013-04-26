@@ -1,4 +1,4 @@
-package org.andvicoso.shopand.model;
+package org.andvicoso.shopand.model.entity;
 
 public enum PaymentStatus {
 

@@ -19,7 +19,7 @@
 				<input type="text" class="search-query" placeholder="Buscar" name="q"/>
 			</form>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="${viewHref}/cart/list.jsp"><img alt="Carrinho de compras" src="${imgsHref}/shopping_cart24.png"/></a></li>
+				<li><a href="${viewHref}/cart/list.jsp">Carrinho</a></li>
          		<li ><a href="${guestHref}/login.jsp">Entrar</a></li>
          		<li ><a href="${guestHref}/put.jsp">Cadastre-se</a></li>
         	</ul>

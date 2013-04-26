@@ -37,16 +37,15 @@ public class ImageServlet extends BaseServlet {
 				Image image = dao.find(id);
 
 				if (image != null) {
-
 					String widthParam = req.getParameter("width");
 					String heightParam = req.getParameter("height");
-
 					byte[] bytes = image.getData();
 
 					if (!StringUtils.isBlank(heightParam)
 							&& !StringUtils.isBlank(widthParam)) {
+
 						Integer width = Integer.parseInt(widthParam);
-						Integer height = Integer.valueOf(heightParam);
+						Integer height = Integer.parseInt(heightParam);
 
 						try {
 							bytes = resize(bytes, width, height,
@@ -55,8 +54,7 @@ public class ImageServlet extends BaseServlet {
 							e.printStackTrace();
 						}
 					}
-
-					ImageUtils.writeImage(image, resp, image.getType());
+					ImageUtils.writeImage(bytes, resp, image.getType());
 					resp.setStatus(304);
 				} else {
 					resp.sendError(404);

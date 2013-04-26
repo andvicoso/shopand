@@ -11,9 +11,13 @@ import org.andvicoso.shopand.model.entity.Image;
 
 public final class ImageUtils {
 
+	private static final String IMAGE = "image/";
+
 	public static void writeImage(byte[] data, HttpServletResponse resp,
 			String type) throws IOException {
 		InputStream in = new ByteArrayInputStream(data);
+		resp.setContentLength(data.length);
+		resp.setContentType(IMAGE + type);
 		writeImage(resp, type, in);
 	}
 
@@ -21,9 +25,7 @@ public final class ImageUtils {
 			InputStream in) throws IOException {
 		ServletOutputStream out = resp.getOutputStream();
 		try {
-			int length = StreamUtils.write(in, out);
-			resp.setContentType("Image/" + type);
-			resp.setContentLength(length);
+			StreamUtils.write(in, out);
 		} catch (final Exception e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -35,6 +37,8 @@ public final class ImageUtils {
 	public static void writeImage(Image image, HttpServletResponse resp,
 			String type) throws IOException {
 		InputStream in = image.getAsStream();
+		resp.setContentLength(image.getData().length);
+		resp.setContentType(IMAGE + type);
 		writeImage(resp, type, in);
 	}
 

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" view="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Carrinho de Compras</title>
 </head>
 <body>
@@ -27,24 +27,37 @@
 					<tr>
 						<td>${product.name}</td>
 						<td>${product.price}</td>
-						<td><a href="remove.do?id=${product.id}">Remover</a></td>
+						<td><form action="remove.do" method="post" style="margin: 0px" id="removeForm_${product.id}">
+								<input type="hidden" name="id" value="${product.id}" />
+								<input type="submit" value="Remover"
+									class="btn btn-danger" 
+									onclick="confirm('Tem certeza que deseja remover?') ? $('#removeForm_${product.id}').submit() : false;"/>
+							</form></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
+
 		<h2>Total: ${cart.total}</h2>
 
-		<form method="post" action="../purchase/payment.jsp">
-			<button type="submit" class="btn">Finalizar Compra</button>
-		</form>
+		<tags:ifUser>
+			<form method="post" action="${userHref}/purchase/choose_service.jsp">
+				<button type="submit" class="btn btn-primary">Finalizar Compra</button>
+			</form>
+		</tags:ifUser>
+		
+		<tags:ifGuest>
+			<form method="post" action="${guestHref}/login.jsp">
+				<button type="submit" class="btn btn-primary">Entrar e Pagar</button>
+			</form>
+		</tags:ifGuest>
 		
 		<script type="text/javascript">
-		$(document).ready(function() { 
-			$("#cartTable").tablesorter(); 
-		});
+			$(document).ready(function() {
+				$("#cartTable").tablesorter();
+			});
 		</script>
-		
+
 	</c:if>
 	<c:if test="${empty cart.products}">
 		<h4>Carrinho vazio!</h4>

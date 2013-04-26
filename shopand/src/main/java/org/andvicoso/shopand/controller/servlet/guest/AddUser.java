@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.andvicoso.shopand.controller.servlet.base.BaseServlet;
-import org.andvicoso.shopand.infra.utils.CriptoUtils;
 import org.andvicoso.shopand.infra.utils.StringUtils;
 import org.andvicoso.shopand.model.dao.UserDao;
 import org.andvicoso.shopand.model.dao.UserDaoJPA;
@@ -36,12 +35,15 @@ public class AddUser extends BaseServlet {
 			String email = req.getParameter("email");
 			String password = req.getParameter("password");
 			String conf_password = req.getParameter("confPassword");
+			String loginTypeStr = req.getParameter("loginType");
 			String acceptedTerms = req.getParameter("acceptedTerms");
 			error = StringUtils.isBlank(acceptedTerms)
 					|| !conf_password.equals(password);
 
 			if (!error) {
-				User user = createUser(name, email, password);
+				LoginType type = LoginType.valueOf(loginTypeStr);
+				User user = new User();
+				user.update(name, email, password, type);
 
 				UserDao dao = new UserDaoJPA();
 				User sameEmailUser = dao.findByEmail(email);
@@ -50,7 +52,7 @@ public class AddUser extends BaseServlet {
 					dao.save(user);
 
 					String msg = mailManager.sendSignUpMail(user);
-					
+
 					if (!msg.isEmpty()) {
 						addGlobalMsg(req, msg, MessageType.ERROR);
 					}
@@ -65,18 +67,9 @@ public class AddUser extends BaseServlet {
 		}
 	}
 
-	private User createUser(String name, String email, String password) {
-		User user = new User();
-		user.setEmail(email);
-		user.setName(name);
-		user.setPassword(CriptoUtils.encryptMD5(password));
-		user.setType(LoginType.USER);
-		return user;
-	}
-
 	@Override
 	protected String[] getRequiredParameters() {
 		return new String[] { "name", "email", "password", "confPassword",
-				"acceptedTerms" };
+				"acceptedTerms", "loginType" };
 	}
 }

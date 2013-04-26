@@ -26,14 +26,16 @@ public class SaveUser extends BaseServlet {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			String conf_password = request.getParameter("confPassword");
+			String loginTypeStr = request.getParameter("loginType");
 			Long id = getLong(request, "id");
 			error = id == null || !conf_password.equals(password);
 
 			if (!error) {
+				LoginType type = LoginType.valueOf(loginTypeStr);
 				UserDao dao = new UserDaoJPA();
 				User user = dao.find(id);
 
-				updateUser(name, email, password, user);
+				user.update(name, email, password, type);
 
 				dao.save(user);
 			}
@@ -44,16 +46,8 @@ public class SaveUser extends BaseServlet {
 		}
 	}
 
-	private void updateUser(String name, String email, String password,
-			User user) {
-		user.setEmail(email);
-		user.setName(name);
-		user.setPassword(password);
-		user.setType(LoginType.USER);
-	}
-
 	@Override
 	protected String[] getRequiredParameters() {
-		return new String[] { "id", "name", "email", "password", "confPassword" };
+		return new String[] { "id", "name", "email", "password", "confPassword", "loginType" };
 	}
 }

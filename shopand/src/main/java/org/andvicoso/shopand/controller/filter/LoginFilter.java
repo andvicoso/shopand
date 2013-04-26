@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.andvicoso.shopand.model.entity.user.User;
 
@@ -30,11 +31,16 @@ public class LoginFilter implements Filter {
 		final HttpServletRequest request = (HttpServletRequest) req;
 		final HttpServletResponse response = (HttpServletResponse) res;
 
-		// log.debug("Procurando usuário na sessão...");
+		HttpSession session = request.getSession(false);
+		boolean error = session != null;
 
-		final User user = (User) request.getSession().getAttribute("user");
+		if (!error) {
+			// log.debug("Procurando usuário na sessão...");
+			final User user = (User)session.getAttribute("user");
+			error = user == null || !validResource(request, user);
+		}
 
-		if (user == null || !validResource(request, user)) {
+		if (error) {
 			// log.debug("Usuário não encontrado! Redirecionando...");
 			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		} else {

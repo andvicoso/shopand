@@ -27,14 +27,16 @@ public class RemoveFromCart extends BaseServlet {
 		boolean error = !isRequestParametersValid(request);
 
 		if (!error) {
-			Integer id = getInt(request, "id");
+			Long id = getLong(request, "id");
 			error = id == null;
 
 			if (!error) {
 				HttpSession session = request.getSession();
 				ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 				if (cart != null) {
-					cart.remove(id);
+					if (cart != null) {
+						cart.remove(id);
+					}
 				}
 			}
 		}

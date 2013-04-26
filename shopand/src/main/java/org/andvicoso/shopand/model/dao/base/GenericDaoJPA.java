@@ -11,16 +11,16 @@ import javax.persistence.TypedQuery;
 
 public abstract class GenericDaoJPA<O> implements GenericDao<O> {
 	private static final String JPA_DB_UNIT = "shopand";
-	protected static EntityManager entityManager;
+	protected EntityManager entityManager;
+	protected static EntityManagerFactory factory;
 	private Class<O> type;
 
 	@SuppressWarnings("unchecked")
 	protected GenericDaoJPA() {
-		if (entityManager == null) {
-			EntityManagerFactory factory = Persistence
-					.createEntityManagerFactory(JPA_DB_UNIT);
-			entityManager = factory.createEntityManager();
+		if (factory == null) {
+			factory = Persistence.createEntityManagerFactory(JPA_DB_UNIT);
 		}
+		entityManager = factory.createEntityManager();
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType) t;
 		type = (Class<O>) pt.getActualTypeArguments()[0];

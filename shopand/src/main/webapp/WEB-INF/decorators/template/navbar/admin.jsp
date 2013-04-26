@@ -14,7 +14,9 @@
 					<li><a href="${viewHref}/about.html">Sobre</a></li>
 				</ul>
 			</div>
-			
+			<ul class="nav nav-pills pull-right">
+				<li><a href="${userHref}/logout.do">Sair</a></li>
+			</ul>
 		</div>
 	</div>
 

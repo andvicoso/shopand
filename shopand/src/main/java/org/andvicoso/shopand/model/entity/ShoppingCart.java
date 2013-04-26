@@ -27,13 +27,8 @@ public class ShoppingCart {
 		products.clear();
 	}
 
-	public void remove(Integer id) {
-		Product toRemove = null;
-		for (Product product : products) {
-			if (product.getId().equals(id)) {
-				toRemove = product;
-			}
-		}
+	public void remove(Long id) {
+		Product toRemove = getProduct(id);
 
 		if (toRemove != null) {
 			products.remove(toRemove);
@@ -46,5 +41,16 @@ public class ShoppingCart {
 			sum += product.getPrice();
 		}
 		return sum;
+	}
+
+	public Product getProduct(Long id) {
+		Product product = null;
+		for (Product p : getProducts()) {
+			if (p.getId().intValue() == id) {
+				product = p;
+				break;
+			}
+		}
+		return product;
 	}
 }

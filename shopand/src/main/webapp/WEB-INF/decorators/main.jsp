@@ -10,11 +10,11 @@
 <c:set var="bootstrapHref" value="${baseHref}/static/bootstrap" />
 
 <meta charset="UTF-8">
-<meta name="viewport" view="width=device-width, initial-scale=1.0">
-<meta name="description" view="">
-<meta name="author" view="andvicoso">
-<meta http-equiv="Content-Type" view="text/html; charset=UTF-8" />
-<meta http-equiv="Content-Language" view="pt-BR" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="andvicoso">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Language" content="pt-BR" />
 
 <link rel="shortcut icon" type="image/jpg" href="${imgsHref}/logo_16.jpg" />
 

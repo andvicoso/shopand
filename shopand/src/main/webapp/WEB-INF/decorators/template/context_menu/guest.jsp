@@ -17,10 +17,10 @@
 			<li class="nav-header">Categorias</li>
 			<c:forEach items="${categories}" var="category">
 				<li>
-					<a href="${guestHref}/product/list.do?id=${category.id}">${category.name}</a>
+					<a href="${viewHref}/product/list.do?id=${category.id}">${category.name}</a>
 				</li>
 			</c:forEach>
-			<li><a href="${guestHref}/product/list.do"><b>Todas</b></a></li>
+			<li><a href="${viewHref}/product/list.do"><b>Todas</b></a></li>
 		</c:if>
 	</ul>
 </div>

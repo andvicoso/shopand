@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" view="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Lista de Produtos</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 		</c:if>
 	</div>
 
-	<tags:listProduct items="${products}" />
+	<tags:listProduct products="${products}" />
 
 </body>
 </html>

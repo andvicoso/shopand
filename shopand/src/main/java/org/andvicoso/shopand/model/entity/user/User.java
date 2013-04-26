@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import org.andvicoso.shopand.infra.utils.CriptoUtils;
 import org.andvicoso.shopand.model.entity.base.AbstractNamedEntity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -50,8 +51,13 @@ public class User extends AbstractNamedEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
+	public void update(String name, String email, String password,
+			LoginType type) {
+		setEmail(email);
+		setName(name);
+		setPassword(CriptoUtils.encryptMD5(password));
+		setType(type);
+	}
 
 }

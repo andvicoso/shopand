@@ -13,14 +13,14 @@
 			<li class="nav-header">Categorias</li>
 			<c:forEach items="${categories}" var="category">
 				<li>
-					<a href="${userHref}/product/list.do?id=${category.id}">${category.name}</a>
+					<a href="${viewHref}/product/list.do?id=${category.id}">${category.name}</a>
 				</li>
 			</c:forEach>
-			<li><a href="${userHref}/product/list.do">Todas</a></li>
+			<li><a href="${viewHref}/product/list.do">Todas</a></li>
 		</c:if>
 		<li class="nav-header">Compras</li>
 		<li><a href="${userHref}/purchase/list.do">Ver</a></li>
 		<li class="nav-header">Carrinho de Compras</li>
-		<li><a href="${userHref}/cart/list.jsp">Ver</a></li>
+		<li><a href="${viewHref}/cart/list.jsp">Ver</a></li>
 	</ul>
 </div>

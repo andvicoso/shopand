@@ -21,7 +21,7 @@ public class JobManager {
 		ScheduleBuilder<? extends Trigger> sb = SimpleScheduleBuilder
 				.simpleSchedule().withIntervalInSeconds(10).repeatForever();
 
-		run(c, sb, group);
+		//run(c, sb, group);
 	}
 
 	private void run(Class<? extends Job> c,

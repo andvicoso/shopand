@@ -26,16 +26,25 @@
 		<tags:msg inputName="email" />
 
 		<label for="password">Senha:</label>
-		<input type="password" name="password" id="password" class="span3" required />
+		<input type="password" name="password" id="password" class="span3"
+			required />
 		<tags:msg inputName="password" />
 
 		<label for="confPassword">Confirmação da senha:</label>
-		<input type="password" name="confPassword" id="confPassword" class="span3" required />
+		<input type="password" name="confPassword" id="confPassword"
+			class="span3" required />
 		<tags:msg inputName="confPassword" />
 
+		<label for="loginType">Tipo*:</label>
+		<select id="loginType" name="loginType" value="${user.loginType}"
+			class="span3" required>
+			<option value="USER">Usuário</option>
+			<option value="ADMIN">Admin</option>
+		</select>
+
 		<label for="acceptedTerms" class="checkbox">
-			Tenho pelo menos 18 anos de idade, li e aceito os <a href="../terms.html"
-				target="_blank">Termos e Condições.</a>
+			Tenho pelo menos 18 anos de idade, li e aceito os <a
+				href="../terms.html" target="_blank">Termos e Condições.</a>
 			<input type="checkbox" name="acceptedTerms" id="acceptedTerms" />
 		</label>
 		<input class="btn btn-primary" type="submit" value="Cadastrar" />
